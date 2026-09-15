@@ -12,11 +12,11 @@ SAP S/4HANA를 활용하여 TO-BE 프로세스를 설계 및 구현하는 것을
 
 | Module | Description |
 |---|---|
-| PP | Production Planning / 생산관리 |
-| MM | Materials Management / 구매 및 자재관리 |
-| SD | Sales and Distribution / 영업 및 판매관리 |
-| FI | Financial Accounting / 재무회계 |
-| CO | Controlling / 관리회계 |
+| PP | Production Planning / 생산관리 | 정유진 |
+| MM | Materials Management / 구매 및 자재관리 | 정민혁 |
+| SD | Sales and Distribution / 영업 및 판매관리 | 홍지민(본인) |
+| FI | Financial Accounting / 재무회계 | 황인형 |
+| CO | Controlling / 관리회계 | 장성하(PM) |
 
 ## Current Status
 
