@@ -82,6 +82,7 @@ ERP 캡스톤디자인 프로젝트의 고객사 산업 후보를 비교하고 �
 
 ---
 
+<a id="candidate-1"></a>
 # Candidate 1. 고단백 영양바 제조업
 
 ## Concept
@@ -373,6 +374,7 @@ Flavor와 Coating 가격 차이에 따른 제품별 수익성 분석도 가능�
 
 ---
 
+<a id="candidate-2"></a>
 # Candidate 2. 고단백 스낵 / Protein Chips 제조업
 
 ## Concept
@@ -636,6 +638,7 @@ Extrusion이 실제로 존재한다는 현실성은 유지
 
 ---
 
+<a id="candidate-3"></a>
 # Candidate 3. RTD 단백질 음료 제조업
 
 ## Concept
