@@ -74,6 +74,14 @@ ERP 캡스톤디자인 프로젝트의 고객사 산업 후보를 비교하고 �
 
 ---
 
+## Table of Contents
+
+1. [Candidate 1. 고단백 영양바 제조업](#candidate-1)
+2. [Candidate 2. 고단백 스낵 / Protein Chips 제조업](#candidate-2)
+3. [Candidate 3. RTD 단백질 음료 제조업](#candidate-3)
+
+---
+
 # Candidate 1. 고단백 영양바 제조업
 
 ## Concept
