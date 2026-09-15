@@ -2029,6 +2029,758 @@ Mixing
 
 ---
 
+---
+
+# ERP 구현용 생산공정 축약안
+
+실제 제조기업의 생산공정을 모두 SAP에 세부적으로 구현할 필요는 없다.
+
+이번 프로젝트에서는 실제 산업의 제조공정과 기업 정체성은 유지하되, SAP ERP에서 관리할 필요가 있는 핵심 생산단계만 추려서 **4~5개의 주요 Operation 또는 Work Center**로 단순화하는 방향을 고려한다.
+
+즉,
+
+```text
+실제 제조현장
+= 세부 작업이 많음
+
+↓
+
+ERP 프로젝트
+
+↓
+
+핵심 생산단계 4~5개로 추상화
+```
+
+하는 방식이다.
+
+---
+
+## 기본 설계 원칙
+
+초보자가 처음 SAP ERP를 구축한다는 점을 고려하여 생산공정은 다음 수준을 권장한다.
+
+| 항목 | 권장 규모 |
+|---|---:|
+| 완제품 FG | 2~3개 |
+| 원재료 RM | 약 5~8개 |
+| 반제품 SFG | 0~1개 |
+| Plant | 1개 |
+| Storage Location | 2~3개 |
+| Vendor | 2~3개 |
+| Work Center | 3~5개 |
+| 핵심 생산 Operation | 4~5개 |
+| Sales Organization | 1개 |
+| Distribution Channel | 2개 |
+| Shipping Point | 1개 |
+
+가능하면 제품별로 별도의 생산라인을 만들지 않고 **공통 Routing을 재사용**한다.
+
+---
+
+# Candidate 1. 고단백 영양바
+
+## 실제 제조공정
+
+실제 생산과정은 다음과 같이 세분화할 수 있다.
+
+```text
+Raw Material Receiving
+↓
+Weighing & Batching
+↓
+Binder Preparation
+↓
+Mixing
+↓
+Forming / Extrusion
+↓
+Cooling
+↓
+Cutting
+↓
+Coating
+↓
+Final Cooling
+↓
+Packaging
+```
+
+하지만 ERP에서는 모든 단계를 각각 별도의 Work Center로 만들 필요는 없다.
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Mixing
+↓
+Forming
+↓
+Cooling & Cutting
+↓
+Coating
+↓
+Packaging
+```
+
+### Work Center 예시
+
+```text
+WC01 - Mixing
+WC02 - Forming
+WC03 - Cooling & Cutting
+WC04 - Coating
+WC05 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Mixing | 원재료 계량 + Binder 준비 + 혼합 |
+| Forming | Extrusion 또는 성형 |
+| Cooling & Cutting | 냉각 + 절단 |
+| Coating | 제품별 Chocolate / Yogurt Coating |
+| Packaging | 개별포장 + 박스포장 |
+
+### 평가
+
+**난이도: 보통**
+
+맛이 바뀌더라도 동일한 Routing을 사용할 수 있다.
+
+```text
+Choco Peanut
+Salted Caramel
+Berry Yogurt
+
+→ 모두 동일 Routing 사용
+```
+
+제품별 차이는 Flavor와 Coating 등 일부 BOM 자재로 표현한다.
+
+---
+
+# Candidate 2. 고단백 스낵 / Protein Chips
+
+## 실제 제조공정
+
+```text
+Raw Material Receiving
+↓
+Weighing
+↓
+Dry Mixing
+↓
+Extrusion
+↓
+Forming
+↓
+Cutting
+↓
+Drying
+↓
+Oil Coating
+↓
+Seasoning
+↓
+Cooling
+↓
+Packaging
+```
+
+실제 생산라인에서는 더 세분화될 수 있지만 ERP에서는 핵심 단계만 관리한다.
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Mixing
+↓
+Extrusion & Forming
+↓
+Drying
+↓
+Seasoning
+↓
+Packaging
+```
+
+### Work Center 예시
+
+```text
+WC01 - Mixing
+WC02 - Extrusion
+WC03 - Drying
+WC04 - Seasoning
+WC05 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Mixing | 계량 + 원재료 혼합 |
+| Extrusion & Forming | 압출 + 성형 + 절단 |
+| Drying | 건조 또는 Baking |
+| Seasoning | Oil Coating + 제품별 Seasoning |
+| Packaging | 냉각 + 포장 |
+
+### 평가
+
+**난이도: 보통~약간 어려움**
+
+제품별 생산공정은 동일하게 유지하고 Seasoning만 변경할 수 있다.
+
+```text
+Common Protein Chip Base
++
+Sea Salt Seasoning
+BBQ Seasoning
+Spicy Seasoning
+```
+
+단, `Extrusion`이라는 생산공정이 처음에는 다소 생소할 수 있다.
+
+---
+
+# Candidate 3. RTD 단백질 음료
+
+## 실제 제조공정
+
+```text
+Raw Material Receiving
+↓
+Weighing
+↓
+Mixing / Dissolving
+↓
+Homogenization
+↓
+Heat Treatment
+↓
+Cooling
+↓
+Filling
+↓
+Capping
+↓
+Labeling
+↓
+Case Packing
+```
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Mixing
+↓
+Homogenization
+↓
+Heat Treatment
+↓
+Filling
+↓
+Packaging
+```
+
+### Work Center 예시
+
+```text
+WC01 - Mixing
+WC02 - Homogenization
+WC03 - Heat Treatment
+WC04 - Filling
+WC05 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Mixing | 계량 + 용해 + 혼합 |
+| Homogenization | 균질화 |
+| Heat Treatment | 살균 또는 UHT 등 열처리 |
+| Filling | 충전 + Capping |
+| Packaging | Labeling + Case Packing |
+
+### 평가
+
+**난이도: 어려운 편**
+
+제품별 Flavor만 변경할 수 있다는 장점은 있지만,
+
+```text
+Homogenization
+Heat Treatment
+Filling
+```
+
+등 음료 제조 특유의 공정이 있어 다른 후보보다 이해해야 할 개념이 많다.
+
+SAP ERP를 처음 구현하는 팀이라면 우선순위를 낮추는 것이 안전하다.
+
+---
+
+# Candidate 4. 반려동물 기능성 간식
+
+## 실제 제조공정
+
+```text
+Raw Material Receiving
+↓
+Weighing & Batching
+↓
+Mixing
+↓
+Forming / Extrusion
+↓
+Cutting
+↓
+Baking / Drying
+↓
+Coating
+↓
+Cooling
+↓
+Packaging
+```
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Mixing
+↓
+Forming
+↓
+Drying
+↓
+Coating
+↓
+Packaging
+```
+
+### Work Center 예시
+
+```text
+WC01 - Mixing
+WC02 - Forming
+WC03 - Drying
+WC04 - Coating
+WC05 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Mixing | 계량 + 기본 원료 + 기능성 원료 혼합 |
+| Forming | 압출 또는 성형 + 절단 |
+| Drying | Baking 또는 Drying |
+| Coating | Flavor / Palatant 적용 + Cooling |
+| Packaging | 계량 + Pouch 포장 + Carton 포장 |
+
+### 평가
+
+**난이도: 보통**
+
+제품 기능이 달라도 동일 Routing을 사용하기 쉽다.
+
+```text
+Common Treat Base
++
+Dental Ingredient
+
+Common Treat Base
++
+Digestive Ingredient
+
+Common Treat Base
++
+Skin & Coat Ingredient
+```
+
+따라서 제품별 차이는 BOM에서 표현하고 생산공정은 그대로 유지할 수 있다.
+
+---
+
+# Candidate 5. 고체 샴푸·클렌징바
+
+## 실제 제조공정
+
+```text
+Raw Material Receiving
+↓
+Weighing
+↓
+Powder Mixing
+↓
+Liquid Ingredient Mixing
+↓
+Homogenizing
+↓
+Extrusion
+↓
+Cutting
+↓
+Pressing / Stamping
+↓
+Cooling
+↓
+Inspection
+↓
+Packaging
+```
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Mixing
+↓
+Homogenizing
+↓
+Extrusion
+↓
+Cutting & Pressing
+↓
+Packaging
+```
+
+### Work Center 예시
+
+```text
+WC01 - Mixing
+WC02 - Homogenizing
+WC03 - Extrusion
+WC04 - Cutting & Pressing
+WC05 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Mixing | 계량 + 분말/액상 원료 혼합 |
+| Homogenizing | 원료 균질화 |
+| Extrusion | Bar 형태로 성형 |
+| Cutting & Pressing | 절단 + 모양 성형 + Stamping |
+| Packaging | 냉각 + 검사 + 포장 |
+
+### 평가
+
+**난이도: 보통~약간 어려움**
+
+생산공정 자체는 SAP에 적용하기 좋지만 원재료명이 다소 전문적이다.
+
+예:
+
+```text
+Surfactant
+Conditioning Agent
+Functional Additive
+Fragrance
+```
+
+따라서 화학적인 세부 Formula까지 다루지 않고 주요 원재료만 BOM에 포함하는 것이 적절하다.
+
+---
+
+# Candidate 6. 홈 프래그런스 캔들
+
+## 실제 제조공정
+
+```text
+Raw Material Receiving
+↓
+Wax Melting
+↓
+Wick Preparation
+↓
+Container Preparation
+↓
+Fragrance / Color Mixing
+↓
+Pouring
+↓
+Cooling
+↓
+Finishing
+↓
+Inspection
+↓
+Labeling
+↓
+Packaging
+```
+
+---
+
+## SAP 구현용 축약 공정
+
+```text
+Melting & Mixing
+↓
+Filling
+↓
+Cooling
+↓
+Finishing & Inspection
+↓
+Packaging
+```
+
+또는 프로젝트를 더 단순하게 하고 싶다면 다음 4단계로도 구성할 수 있다.
+
+```text
+Mixing
+↓
+Filling
+↓
+Cooling & Inspection
+↓
+Packaging
+```
+
+### Work Center 예시
+
+#### 5단계 버전
+
+```text
+WC01 - Melting & Mixing
+WC02 - Filling
+WC03 - Cooling
+WC04 - Finishing & Inspection
+WC05 - Packaging
+```
+
+#### 단순화 버전
+
+```text
+WC01 - Mixing
+WC02 - Filling
+WC03 - Cooling & Inspection
+WC04 - Packaging
+```
+
+### 통합되는 실제 작업
+
+| SAP Operation | 포함되는 실제 작업 |
+|---|---|
+| Melting & Mixing | Wax 용융 + Fragrance / Color 혼합 |
+| Filling | Wick 및 Container 준비 + Wax Pouring |
+| Cooling | Wax 냉각 및 고형화 |
+| Finishing & Inspection | Wick 정리 + 외관 검사 |
+| Packaging | Label + Lid + Carton 포장 |
+
+### 평가
+
+**난이도: 쉬움**
+
+제품별 향만 변경하고 동일한 Routing을 사용할 수 있다.
+
+```text
+Forest Candle
+Citrus Candle
+Cotton Candle
+
+→ 동일 생산공정
+→ Fragrance만 변경
+```
+
+ERP를 처음 구축하는 팀에게 가장 부담이 적은 후보 중 하나이다.
+
+---
+
+# 후보별 SAP 축약 공정 비교
+
+| Candidate | SAP에서 사용할 핵심 공정 | 공정 수 | 예상 난이도 |
+|---|---|---:|---|
+| 고단백 영양바 | Mixing → Forming → Cooling & Cutting → Coating → Packaging | 5 | 보통 |
+| Protein Chips | Mixing → Extrusion → Drying → Seasoning → Packaging | 5 | 보통~약간 어려움 |
+| RTD 단백질 음료 | Mixing → Homogenization → Heat Treatment → Filling → Packaging | 5 | 어려움 |
+| 반려동물 기능성 간식 | Mixing → Forming → Drying → Coating → Packaging | 5 | 보통 |
+| 고체 샴푸 | Mixing → Homogenizing → Extrusion → Cutting & Pressing → Packaging | 5 | 보통~약간 어려움 |
+| 캔들 | Mixing → Filling → Cooling & Inspection → Packaging | 4 | 쉬움 |
+
+---
+
+# ERP 초보자 기준 추천
+
+SAP ERP를 처음 설계하는 팀이라는 점을 고려하면 다음 정도의 복잡도가 적절하다.
+
+## 가장 안전한 수준
+
+```text
+원재료
+↓
+Operation 1
+↓
+Operation 2
+↓
+Operation 3
+↓
+Operation 4
+↓
+완제품
+```
+
+즉 **4개 정도의 핵심 생산공정**만으로 제품을 설명할 수 있는 산업이 가장 편하다.
+
+---
+
+## 적당한 수준
+
+```text
+원재료
+↓
+Operation 1
+↓
+Operation 2
+↓
+Operation 3
+↓
+Operation 4
+↓
+Operation 5
+↓
+완제품
+```
+
+**5개 정도의 핵심 생산공정**까지는 충분히 관리 가능한 수준으로 본다.
+
+---
+
+## 지양하는 수준
+
+```text
+원재료
+↓
+공정 1
+↓
+공정 2
+↓
+공정 3
+↓
+공정 4
+↓
+공정 5
+↓
+공정 6
+↓
+공정 7
+↓
+공정 8
+↓
+공정 9
+↓
+공정 10
+↓
+완제품
+```
+
+실제 공장에서 작업이 10단계라고 하더라도 SAP 프로젝트에서 모든 단계를 별도의 Work Center나 Operation으로 구성할 필요는 없다.
+
+---
+
+# 현재 권장 프로젝트 스케일
+
+산업 최종 선정 후 최초 설계는 다음 규모에서 시작한다.
+
+```text
+Company Code
+1개
+
+Plant
+1개
+
+Storage Location
+2~3개
+
+Finished Goods
+2~3개
+
+Raw Materials
+5~8개
+
+Semi-Finished Goods
+0~1개
+
+Vendor
+2~3개
+
+Customer
+2~3개
+
+Work Center
+3~5개
+
+Routing
+공통 Routing 1개 중심
+
+Sales Organization
+1개
+
+Distribution Channel
+2개
+
+Shipping Point
+1개
+```
+
+먼저 위 규모로 기본 프로세스를 완성한 뒤, 실제 SAP Configuration 과정에서 필요성이 확인될 경우 조직이나 자재를 추가한다.
+
+---
+
+# 핵심 원칙
+
+> **실제 제조공정을 없애는 것이 아니라, ERP에서 관리할 필요가 있는 핵심 작업 단위로 묶는다.**
+
+예를 들어 실제 공장에서
+
+```text
+계량
+↓
+Binder 준비
+↓
+분말 투입
+↓
+액상 원료 투입
+↓
+혼합
+```
+
+의 다섯 작업이 있더라도 SAP에서는
+
+```text
+Mixing
+```
+
+하나의 Operation으로 표현할 수 있다.
+
+반대로
+
+```text
+원재료 구매
+↓
+완제품 포장
+```
+
+처럼 해당 산업의 핵심 제조공정 자체를 제거하는 수준까지 단순화하지 않는다.
+
+따라서 산업 선정 시 가장 중요한 기준은
+
+> **"실제 공정을 4~5개의 SAP Operation으로 줄였을 때도 해당 산업의 제조기업처럼 보이는가?"**
+
+이다.
+
 # 8. 현재 Decision
 
 아직 최종 산업은 확정하지 않는다.
