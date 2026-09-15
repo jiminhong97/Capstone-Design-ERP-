@@ -79,6 +79,9 @@ ERP 캡스톤디자인 프로젝트의 고객사 산업 후보를 비교하고 �
 1. [Candidate 1. 고단백 영양바 제조업](#candidate-1)
 2. [Candidate 2. 고단백 스낵 / Protein Chips 제조업](#candidate-2)
 3. [Candidate 3. RTD 단백질 음료 제조업](#candidate-3)
+4. [Candidate 4. 반려동물 기능성 간식 제조업](#candidate-4)
+5. [Candidate 5. 고체 샴푸·클렌징바 제조업](#candidate-5)
+6. [Candidate 6. 홈 프래그런스 캔들 제조업](#candidate-6)
 
 ---
 
@@ -1066,6 +1069,963 @@ Extrusion
 
 - Arla Foods Ingredients - Whey Protein Ingredients
 - Tetra Pak - Mixing / Homogenization / UHT / Filling Equipment
+
+---
+
+---
+
+<a id="candidate-4"></a>
+# Candidate 4. 반려동물 기능성 간식 제조업
+
+## Concept
+
+### 반려동물의 건강과 기호성을 함께 고려한 기능성 간식 제조기업
+
+단순히 강아지에게 맛있는 간식을 판매하는 것이 아니라 기능별로 제품을 구분한다.
+
+예를 들어 다음과 같이 제품을 구성할 수 있다.
+
+- 구강관리
+- 장 건강
+- 피부·모질
+- 일반 영양 간식
+
+제품의 기능은 달라도 기본적인 생산공정은 동일하게 유지한다.
+
+즉,
+
+```text
+공통 Treat Base
++
+기능별 Ingredient
++
+제품별 Flavor
+
+=
+각기 다른 완제품
+```
+
+형태로 구성한다.
+
+반려동물 산업 자체도 특정 성별이나 연령대에 크게 제한되지 않고 대중적으로 이해하기 쉬운 장점이 있다.
+
+---
+
+## Product Example
+
+### FG01 - Dental Care Treat
+구강관리를 위한 간식
+
+### FG02 - Digestive Care Treat
+장 건강을 위한 간식
+
+### FG03 - Skin & Coat Treat
+피부·모질 관리를 위한 간식
+
+세 제품 모두 동일한 기본 제조공정을 사용하고 기능성 원료 일부만 변경한다.
+
+```text
+              Common Treat Base
+                     │
+        ┌────────────┼────────────┐
+        │            │            │
+     Dental       Digestive    Skin & Coat
+    Ingredient    Ingredient    Ingredient
+        │            │            │
+        ▼            ▼            ▼
+      FG01          FG02         FG03
+```
+
+---
+
+## 실제 산업과의 유사성
+
+실제 반려동물 간식 제조에서는 다음과 같은 공정이 사용될 수 있다.
+
+```text
+Raw Material Receiving
+↓
+Weighing
+↓
+Mixing
+↓
+Forming / Extrusion
+↓
+Cutting
+↓
+Baking / Drying
+↓
+Coating
+↓
+Cooling
+↓
+Packaging
+```
+
+실제 Pet Treat 생산라인에서도 Mixing, Extrusion 또는 Molding, Drying/Baking, Coating, Cooling, Packaging 등의 공정이 사용된다.
+
+따라서 단순히 이미 만들어진 간식을 구매해 포장만 하는 회사가 아니라, 원재료에서 완제품까지 직접 생산하는 제조기업으로 설정할 수 있다.
+
+---
+
+## Preliminary BOM
+
+> 아래 BOM은 ERP 산업 후보 비교를 위한 개념적 구조이며 실제 배합비는 산업 최종 선정 후 결정한다.
+
+| Type | Material | 예상 단위 | 설명 |
+|---|---|---|---|
+| RM | Chicken / Protein Base | KG | 주요 단백질 원료 |
+| RM | Grain / Starch Base | KG | 제품 형태와 식감 구성 |
+| RM | Vegetable Powder | KG | 기본 영양 원료 |
+| RM | Oil | KG | 식감 및 기호성 |
+| RM | Functional Ingredient | KG | 제품별 기능성 원료 |
+| RM | Flavor / Palatant | KG | 기호성 강화 |
+| PK | Individual Pouch | EA | 개별 포장 |
+| PK | Carton Box | EA | 운송용 박스 |
+
+---
+
+## 제품별 BOM 차이
+
+기본 BOM은 최대한 동일하게 사용한다.
+
+| Product | 변경되는 주요 자재 |
+|---|---|
+| Dental Care | Dental Functional Ingredient |
+| Digestive Care | Digestive Functional Ingredient |
+| Skin & Coat | Skin & Coat Functional Ingredient |
+
+즉,
+
+```text
+Protein Base
++
+Grain / Starch
++
+Vegetable Powder
++
+Oil
++
+기능별 Ingredient
++
+Flavor
+```
+
+구조이다.
+
+제품이 달라져도 대부분의 원재료와 생산공정은 그대로 사용할 수 있다.
+
+---
+
+## Production Process
+
+### 1. Raw Material Receiving
+단백질 원료, 곡물원료, 기능성 원료, 포장재 등을 입고한다.
+
+### 2. Weighing & Batching
+생산할 제품과 수량에 맞게 원재료를 계량한다.
+
+### 3. Mixing
+기본 원재료와 기능성 원료를 균일하게 혼합한다.
+
+### 4. Forming / Extrusion
+혼합물을 일정한 형태로 성형한다.
+
+예:
+
+```text
+Stick
+Cube
+Bite
+```
+
+### 5. Cutting
+제품을 일정한 크기와 중량으로 절단한다.
+
+### 6. Baking / Drying
+제품을 가열 또는 건조하여 원하는 식감과 보관성을 형성한다.
+
+### 7. Coating
+제품의 기호성을 높이기 위한 Flavor 또는 Coating을 적용한다.
+
+### 8. Cooling
+포장 전에 제품을 냉각한다.
+
+### 9. Packaging
+정량 계량하여 Pouch에 담고 최종 포장한다.
+
+---
+
+## Work Center Example
+
+```text
+WC01 - Mixing
+WC02 - Forming
+WC03 - Baking / Drying
+WC04 - Coating & Cooling
+WC05 - Packaging
+```
+
+---
+
+## Module Connection
+
+### MM
+
+구매 대상:
+
+- Protein Base
+- Grain / Starch
+- Vegetable Powder
+- Functional Ingredient
+- Oil
+- Flavor
+- Packaging Material
+
+```text
+Purchase Requisition
+↓
+Purchase Order
+↓
+Vendor
+↓
+Goods Receipt
+↓
+Raw Material Inventory
+```
+
+### PP
+
+관리 대상:
+
+- 제품별 BOM
+- 생산계획
+- 생산오더
+- Work Center
+- Routing
+- 완제품 생산
+
+```text
+Mixing
+↓
+Forming
+↓
+Drying
+↓
+Coating
+↓
+Packaging
+```
+
+### SD
+
+판매채널 예시:
+
+```text
+Online
+Pet Shop / Wholesale
+```
+
+Customer 예시:
+
+- 온라인 유통업체
+- 반려동물 전문 매장
+- 동물병원
+- 대형 소매업체
+
+판매 흐름:
+
+```text
+Sales Order
+↓
+Availability Check
+↓
+Delivery
+↓
+Picking
+↓
+Goods Issue
+↓
+Billing
+```
+
+### FI
+
+- 원재료 구매에 따른 A/P
+- 완제품 판매에 따른 A/R
+- Vendor Payment
+- Customer Payment
+
+### CO
+
+기능성 원료 가격 차이에 따른 제품별 제조원가 비교가 가능하다.
+
+예:
+
+```text
+Dental Care 제조원가
+vs
+Digestive Care 제조원가
+vs
+Skin & Coat 제조원가
+```
+
+---
+
+## 장점
+
+- 최근 성장하고 있는 반려동물 산업을 반영할 수 있음
+- 특정 유행 상품에 의존하지 않음
+- 남녀 모두 이해하기 쉬운 제품
+- 실제 제조공정이 명확함
+- 제품별 기능만 달라지고 기본 공정을 재사용할 수 있음
+- MM에서 관리할 원재료와 Vendor가 충분함
+- PP의 BOM과 Routing을 구성하기 좋음
+- 온라인과 B2B 판매 모두 SD에 적용 가능함
+- 기능성 원료 가격에 따라 CO 원가 분석도 가능함
+
+## 단점
+
+- 식품과 마찬가지로 품질 및 위생 이슈가 존재함
+- 기능성 원료를 너무 많이 설정하면 BOM이 복잡해질 수 있음
+- 실제 Pet Food 규제까지 다루면 프로젝트 범위가 커질 수 있음
+
+### 프로젝트 대응 방향
+
+식품영양 또는 수의학적 효능을 직접 검증하는 것이 프로젝트 목적은 아니다.
+
+따라서
+
+```text
+실제 제조공정
++
+현실적인 원재료 구조
++
+SAP 생산·구매·판매 프로세스
+```
+
+까지만 구현하고 세부 기능성 배합과 품질검사는 범위에서 제외한다.
+
+---
+
+<a id="candidate-5"></a>
+# Candidate 5. 고체 샴푸·클렌징바 제조업
+
+## Concept
+
+### 플라스틱 용기를 줄이고 사용 목적에 따라 선택할 수 있는 Solid Personal Care 브랜드
+
+일반적인 액체 샴푸가 아니라 고체 형태로 생산되는 Shampoo Bar 또는 Cleansing Bar를 제조한다.
+
+제품 기능에 따라 다음과 같이 구분할 수 있다.
+
+- Moisture
+- Refresh
+- Sensitive
+
+특정 성별보다는 생활용품·퍼스널케어 시장 전체를 타깃으로 할 수 있다.
+
+---
+
+## Product Example
+
+### FG01 - Moisture Shampoo Bar
+건조한 두피용
+
+### FG02 - Refresh Shampoo Bar
+상쾌한 사용감을 강조한 제품
+
+### FG03 - Sensitive Shampoo Bar
+순한 사용감을 강조한 제품
+
+기본 Shampoo Bar Base와 생산공정은 동일하게 유지하고 일부 첨가원료와 향만 변경한다.
+
+```text
+           Common Shampoo Bar Base
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+     Moisture       Refresh      Sensitive
+     Additive       Additive      Additive
+        │             │             │
+        ▼             ▼             ▼
+      FG01           FG02          FG03
+```
+
+---
+
+## 실제 산업과의 유사성
+
+실제 고체 샴푸 제조에서는 Powder 또는 Granule 형태의 Surfactant와 기타 원료를 사용하여 다음과 같은 공정을 적용할 수 있다.
+
+```text
+Raw Material Receiving
+↓
+Weighing
+↓
+Mixing
+↓
+Homogenizing
+↓
+Extrusion
+↓
+Cutting
+↓
+Pressing / Stamping
+↓
+Cooling
+↓
+Packaging
+```
+
+또는 제조방식에 따라 원료를 가열하여 혼합한 후 Mold에서 굳히는 방식도 존재한다.
+
+따라서 단순히 이미 완성된 Soap Base를 구매하여 포장만 하는 기업으로 설정하지 않고, 원료 배합부터 고형 제품 성형까지 직접 수행하는 제조기업으로 설계할 수 있다.
+
+---
+
+## Preliminary BOM
+
+| Type | Material | 예상 단위 | 설명 |
+|---|---|---|---|
+| RM | Surfactant Base | KG | 세정 기능의 주요 원료 |
+| RM | Conditioning Agent | KG | 사용감 개선 |
+| RM | Plant Oil / Butter | KG | 제품 특성 부여 |
+| RM | Starch / Filler | KG | 형태 및 물성 조절 |
+| RM | Functional Additive | KG | 제품별 기능성 원료 |
+| RM | Fragrance | KG | 제품별 향 |
+| PK | Paper Wrapper | EA | 개별 포장 |
+| PK | Carton Box | EA | 최종 포장 |
+
+---
+
+## 제품별 BOM 차이
+
+| Product | 주요 변경 자재 |
+|---|---|
+| Moisture | Moisturizing Additive + Fragrance A |
+| Refresh | Refreshing Additive + Fragrance B |
+| Sensitive | Mild Additive + Fragrance C |
+
+공통 Base는 동일하게 유지한다.
+
+```text
+Common Surfactant Base
++
+Conditioning Agent
++
+Oil
++
+제품별 Additive
++
+제품별 Fragrance
+```
+
+---
+
+## Production Process
+
+### 1. Raw Material Receiving
+Surfactant, Oil, Additive, Fragrance, Packaging Material 등을 입고한다.
+
+### 2. Weighing
+제품별 BOM에 따라 원료를 계량한다.
+
+### 3. Mixing
+분말 및 액상 원료를 혼합한다.
+
+### 4. Homogenizing
+혼합물을 균일한 상태로 만든다.
+
+### 5. Extrusion
+혼합된 원료를 일정한 형태의 Bar로 압출한다.
+
+### 6. Cutting
+긴 Bar를 일정 크기와 중량으로 절단한다.
+
+### 7. Pressing / Stamping
+최종 제품의 모양을 만들고 브랜드 Logo 등을 압인할 수 있다.
+
+### 8. Cooling
+제품 형태를 안정화한다.
+
+### 9. Packaging
+종이 포장 또는 Carton에 포장한다.
+
+---
+
+## Work Center Example
+
+```text
+WC01 - Mixing
+WC02 - Homogenizing
+WC03 - Extrusion
+WC04 - Cutting & Pressing
+WC05 - Packaging
+```
+
+---
+
+## Module Connection
+
+### MM
+
+구매 대상:
+
+- Surfactant
+- Conditioning Agent
+- Oil
+- Additive
+- Fragrance
+- Packaging
+
+### PP
+
+```text
+Mixing
+↓
+Homogenizing
+↓
+Extrusion
+↓
+Cutting
+↓
+Pressing
+↓
+Packaging
+```
+
+### SD
+
+판매채널 예시:
+
+```text
+Online
+Lifestyle / Beauty Retail
+```
+
+Customer 예시:
+
+- 온라인 유통업체
+- 생활용품 편집숍
+- 드럭스토어
+- 호텔·숙박업체 B2B
+
+### FI
+
+원료 구매와 제품 판매에 따른 회계 거래를 처리한다.
+
+### CO
+
+제품별 기능성 Additive와 Fragrance 가격 차이에 따른 원가 분석이 가능하다.
+
+---
+
+## 장점
+
+- 제조공정이 단순 포장 수준이 아님
+- Mixing, Extrusion, Cutting 등 PP 공정이 명확함
+- 제품 종류가 달라도 Routing을 거의 그대로 사용할 수 있음
+- 포장재까지 포함하여 MM 구성이 쉬움
+- 액체 샴푸보다 Bottle 등의 복잡성을 줄일 수 있음
+- 제품 디자인과 브랜드 컨셉을 만들기 좋음
+- 온라인 및 B2B 판매 시나리오 모두 가능함
+
+## 단점
+
+- 화장품 원료명이 처음에는 생소할 수 있음
+- 실제 제품 Formula를 정교하게 만들려 하면 복잡해짐
+- 품질관리와 화장품 규정까지 포함하면 프로젝트 범위가 커질 수 있음
+
+### 프로젝트 대응 방향
+
+세부 화학 Formula를 직접 개발하지 않는다.
+
+ERP에서는 다음 수준까지만 관리한다.
+
+```text
+주요 원재료
+↓
+배합
+↓
+성형
+↓
+절단
+↓
+포장
+```
+
+즉, 실제 산업의 제조공정은 유지하면서 화학적인 세부 배합기술은 프로젝트 범위에서 제외한다.
+
+---
+
+<a id="candidate-6"></a>
+# Candidate 6. 홈 프래그런스 캔들 제조업
+
+## Concept
+
+### 공간과 상황에 따라 향을 선택하는 Home Fragrance Candle 브랜드
+
+단순한 장식용 초가 아니라 거실, 침실, 업무공간 등 사용환경에 따라 향을 선택하는 생활용품 브랜드로 설정한다.
+
+예:
+
+- Relax
+- Focus
+- Fresh
+
+향수보다 제조공정이 단순하지만 단순히 완제품을 구매하여 포장하는 구조는 아니다.
+
+Wax를 직접 용융하고 Fragrance와 Color를 배합한 뒤 심지를 설치하여 충전·냉각·검수하는 실제 제조공정을 가진다.
+
+---
+
+## Product Example
+
+### FG01 - Forest Candle
+우디 계열 향
+
+### FG02 - Citrus Candle
+상쾌한 시트러스 향
+
+### FG03 - Cotton Candle
+깨끗한 코튼 계열 향
+
+세 제품은 Fragrance만 달라지고 기본적인 Wax Base, Container 및 생산공정은 동일하게 사용할 수 있다.
+
+```text
+                Common Wax Base
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+      Forest        Citrus        Cotton
+     Fragrance      Fragrance     Fragrance
+        │             │             │
+        ▼             ▼             ▼
+      FG01           FG02          FG03
+```
+
+---
+
+## 실제 산업과의 유사성
+
+실제 Candle 제조에서는 다음과 같은 과정이 사용된다.
+
+```text
+Raw Material Receiving
+↓
+Wick Preparation
+↓
+Wax Melting
+↓
+Color / Fragrance Mixing
+↓
+Container Preparation
+↓
+Pouring
+↓
+Cooling
+↓
+Finishing
+↓
+Inspection
+↓
+Packaging
+```
+
+따라서
+
+> "향료 완제품을 받아서 포장만 하는 회사"
+
+와는 다르다.
+
+Fragrance Oil 자체는 전문 원료업체로부터 구매할 수 있지만,
+
+```text
+Wax 선정
++
+Fragrance 배합
++
+Wick 선정
++
+Wax 용융
++
+Pouring
++
+Cooling
++
+Finishing
+```
+
+과정을 직접 수행하기 때문에 충분히 Candle 제조기업으로 볼 수 있다.
+
+---
+
+## Preliminary BOM
+
+| Type | Material | 예상 단위 | 설명 |
+|---|---|---|---|
+| RM | Soy / Plant Wax | KG | Candle Base |
+| RM | Fragrance Oil | KG | 제품별 향 |
+| RM | Dye | KG | 색상 조절 |
+| RM | Wick | EA | 심지 |
+| RM | Wick Holder | EA | 심지 고정 |
+| PK | Glass Container | EA | Candle 용기 |
+| PK | Lid | EA | 뚜껑 |
+| PK | Label | EA | 제품별 Label |
+| PK | Carton Box | EA | 최종 포장 |
+
+---
+
+## 제품별 BOM 차이
+
+| Product | 변경되는 주요 자재 |
+|---|---|
+| Forest | Forest Fragrance |
+| Citrus | Citrus Fragrance |
+| Cotton | Cotton Fragrance |
+
+나머지 주요 원재료는 공통으로 사용할 수 있다.
+
+---
+
+## Production Process
+
+### 1. Raw Material Receiving
+Wax, Wick, Fragrance, Container, Packaging 등을 입고한다.
+
+### 2. Wick Preparation
+심지를 일정 길이로 준비한다.
+
+### 3. Wax Melting
+고체 Wax를 가열하여 액체 상태로 만든다.
+
+### 4. Fragrance / Color Mixing
+제품 종류에 맞는 Fragrance와 Dye를 Wax에 혼합한다.
+
+### 5. Container Preparation
+Glass Container에 Wick을 고정한다.
+
+### 6. Pouring
+혼합된 Wax를 Container에 정량 충전한다.
+
+### 7. Cooling
+충전된 Candle을 일정 시간 냉각하여 굳힌다.
+
+### 8. Finishing
+Wick 길이를 조정하고 표면을 정리한다.
+
+### 9. Inspection
+외관, 용량, Wick 위치 등을 확인한다.
+
+### 10. Packaging
+Label을 부착하고 Carton에 포장한다.
+
+---
+
+## Work Center Example
+
+```text
+WC01 - Wax Melting
+WC02 - Mixing
+WC03 - Pouring
+WC04 - Cooling & Finishing
+WC05 - Packaging
+```
+
+---
+
+## Module Connection
+
+### MM
+
+구매:
+
+- Wax
+- Wick
+- Fragrance
+- Dye
+- Glass Container
+- Lid
+- Label
+- Carton
+
+### PP
+
+```text
+Melting
+↓
+Mixing
+↓
+Pouring
+↓
+Cooling
+↓
+Finishing
+↓
+Packaging
+```
+
+### SD
+
+판매채널 예시:
+
+```text
+Online
+Lifestyle / Wholesale
+```
+
+Customer 예시:
+
+- 온라인 유통업체
+- 인테리어 소품샵
+- 편집숍
+- 호텔 및 숙박업체
+- 기업 선물 고객
+
+### FI
+
+- 원재료 및 부자재 구매
+- 제품 판매
+- Vendor / Customer 거래
+
+### CO
+
+제품별 Fragrance 가격 및 Container 가격의 차이에 따라 제조원가와 수익성을 비교할 수 있다.
+
+---
+
+## 장점
+
+- 제품 자체가 대중적이고 이해하기 쉬움
+- 성별에 크게 제한되지 않음
+- 향만 변경하여 여러 제품을 만들 수 있음
+- 동일 Routing을 반복해서 활용할 수 있음
+- Wax, Wick, Container, Fragrance 등 BOM이 명확함
+- 실제 제조공정이 존재함
+- 식품보다 유통기한 문제를 덜 고려해도 됨
+- B2C와 B2B 모두 SD 시나리오 구성이 쉬움
+- 패키지 디자인 등을 활용하여 발표자료를 만들기 좋음
+
+## 단점
+
+- 단백질바나 Pet Treat에 비해 생산공정이 조금 단순해 보일 수 있음
+- 향 종류를 너무 많이 설정하면 Material Master가 불필요하게 많아질 수 있음
+- Candle 제조에서도 품질 및 안전관리가 중요하지만 현재 프로젝트에 QM 모듈은 없음
+
+### 프로젝트 대응 방향
+
+단순한 Handmade Candle 공방으로 설정하기보다는 일정 규모 이상의 제조기업으로 설정한다.
+
+따라서
+
+```text
+원재료 구매
+↓
+Batch 생산
+↓
+Wax Melting
+↓
+Fragrance Mixing
+↓
+Automated / Semi-Automated Pouring
+↓
+Cooling
+↓
+Packaging
+↓
+완제품 재고
+```
+
+구조를 사용한다.
+
+---
+
+# 추가 후보 비교
+
+| 평가항목 | 반려동물 기능성 간식 | 고체 샴푸·클렌징바 | 홈 프래그런스 캔들 |
+|---|---:|---:|---:|
+| 대중성 | ★★★★★ | ★★★★☆ | ★★★★★ |
+| 제조기업 느낌 | ★★★★★ | ★★★★★ | ★★★★☆ |
+| BOM 난이도 | ★★★★☆ | ★★★☆☆ | ★★★★★ |
+| 생산공정 난이도 | ★★★★☆ | ★★★☆☆ | ★★★★★ |
+| 제품별 공정 재사용 | ★★★★★ | ★★★★★ | ★★★★★ |
+| MM 적합성 | ★★★★★ | ★★★★★ | ★★★★★ |
+| PP 적합성 | ★★★★★ | ★★★★★ | ★★★★☆ |
+| SD 적합성 | ★★★★★ | ★★★★☆ | ★★★★★ |
+| FI / CO 적합성 | ★★★★★ | ★★★★☆ | ★★★★★ |
+| ERP 초보자 적합성 | ★★★★☆ | ★★★☆☆ | ★★★★★ |
+| 발표 소재의 재미 | ★★★★★ | ★★★★☆ | ★★★★☆ |
+
+---
+
+# 추가 후보 추천 순위
+
+## 1순위 - 반려동물 기능성 간식
+
+세 후보 중 ERP 프로젝트와 현실적인 제조공정의 균형이 가장 좋다.
+
+```text
+원재료 구매
+↓
+혼합
+↓
+성형
+↓
+건조
+↓
+코팅
+↓
+포장
+↓
+판매
+```
+
+라는 전체 흐름이 명확하다.
+
+제품별 기능성 Ingredient만 변경하여 여러 완제품을 만들 수 있기 때문에 BOM과 Routing도 재사용하기 쉽다.
+
+---
+
+## 2순위 - 홈 프래그런스 캔들
+
+ERP를 처음 배우는 팀이라는 점까지 고려하면 가장 구현하기 편한 후보이다.
+
+단순하지만
+
+```text
+Wax Melting
+→ Mixing
+→ Pouring
+→ Cooling
+→ Finishing
+→ Packaging
+```
+
+이라는 실제 제조공정이 존재하기 때문에 단순 완제품 유통회사와는 차이가 있다.
+
+식품처럼 복잡한 유통기한이나 배합문제도 비교적 적다.
+
+---
+
+## 3순위 - 고체 샴푸·클렌징바
+
+제조업다운 느낌은 세 후보 중 상당히 강하다.
+
+특히
+
+```text
+Mixing
+→ Homogenizing
+→ Extrusion
+→ Cutting
+→ Pressing
+→ Packaging
+```
+
+공정이 PP 프로젝트에 잘 맞는다.
+
+다만 Surfactant 등의 화장품 원료가 처음 접하는 사람에게 조금 생소하고, 산업을 깊게 조사하기 시작하면 배합과 품질관리가 복잡해질 수 있다는 점이 단점이다.
 
 ---
 
