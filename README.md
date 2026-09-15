@@ -1,7 +1,4 @@
 # Capstone-Design-ERP-
-캡스톤디자인(ERP) 진행상황 저장
-
-# ERP Capstone Design
 
 SAP S/4HANA 기반 ERP 구축 프로젝트
 
